@@ -1,23 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { ThemeSwitcherProvider } from "react-css-theme-switcher";
+import { THEME_CONFIG } from "./configs/AppConfig";
+import LoginOne from "views/auth-views/authentication/login-1";
+
+const themes = {
+  light: `${process.env.PUBLIC_URL}/css/light-theme.css`,
+};
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <ThemeSwitcherProvider
+        themeMap={themes}
+        defaultTheme={THEME_CONFIG.currentTheme}
+      >
+        <LoginOne allowRedirect={true} />
+      </ThemeSwitcherProvider>
     </div>
   );
 }
